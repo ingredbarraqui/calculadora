@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculadora</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=devide-width, initial-scale=1, shink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+
+    <section id="app" class="container">
+        <div class="row">
+            <section class="col-sm">
+                <div class="historico">
+                    <h1 class="titulo">Histórico</h1>
+                    <ol>
+                        <li v-for="(item,index) in historico">{{item.text}} = {{item.resultado}} <i @click="apagar(index)" class="material-icons">delete</i></li>
+
+                    </ol>
+                </div>
+            </section>
+
+            <section class="col-sm">
+                <div class="numeros">
+                    <div class="row" id="result" style="font-size: x-large;">
+                        <div class="tela" v-bind:style="{fontSize: fonte }">{{tela}}</div>
+                    </div>
+                    <div>
+                        <button class="btn-3" @click="ac()"><strong>Ac</strong></button>
+                        <button id="\" class="btn-2" @click="add('/')">\</button>
+                    </div>
+                    <div>
+                        <button id="9" class="btn-1" @click="add(7)">7</button>
+                        <button id="8" class="btn-1" @click="add(8)">8</button>
+                        <button id="7" class="btn-1" @click="add(9)">9</button>
+                        <button id="x" class="btn-2" @click="add('*')">x</button>
+                    </div>
+                    <div>
+                        <button id="6" class="btn-1" @click="add(4)">4</button>
+                        <button id="5" class="btn-1" @click="add(5)">5</button>
+                        <button id="4" class="btn-1" @click="add(6)">6</button>
+                        <button id="-" class="btn-2" @click="add('-')">-</button>
+                    </div>
+                    <div>
+                        <button id="3" class="btn-1" @click="add(1)">1</button>
+                        <button id="2" class="btn-1" @click="add(2)">2</button>
+                        <button id="1" class="btn-1" @click="add(3)">3</button>
+                        <button id="+" class="btn-2" @click="add('+')">+</button>
+                    </div>
+                    <div>
+                        <button id="0" class="btn-0" @click="add(0)">0</button>
+                        <button id="," class="btn-1" @click="add('.')">,</button>
+                        <button id="=" class="btn-2" @click="resultado(true)">=</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            methods: {
+                add: function(numero) {
+                    var texto = this.tela.toString()
+                    if (numero == ".") {
+                        if (texto.search(/\./) > 0) {
+                            return;
+                        }
+                    }
+                    if (this.tela == 0) {
+                        this.tela = numero;
+                    } else {
+                        this.tela += "" + numero;
+                    }
+
+                    this.resize();
+                },
+                resultado: function() {
+
+                    var calculo = this.tela;
+                    this.tela = eval(this.tela)
+                    this.historico.push({
+                        text: calculo,
+                        resultado: this.tela
+                    })
+
+                    this.resize();
+                },
+
+                ac: function() {
+                    this.tela = 0;
+                    this.resize();
+                },
+                apagar: function(index) {
+                    this.historico.splice(index, 1);
+                },
+                resize: function() {
+                    var texto = this.tela.toString()
+
+                    if (texto.length > 10) {
+                        this.fonte = "20px";
+                        console.log(this.tela)
+                    } else {
+                        this.fonte = "40px";
+                    }
+                }
+
+            },
+
+            data: {
+                tela: 0,
+                memoria: 0,
+                operacao: "",
+                historico: [],
+                fonte: "40px"
+            }
+        })
+    </script>
+
+</body>
+
+</html>

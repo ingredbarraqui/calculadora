@@ -1,0 +1,52 @@
+#botoes>div{
+	text-align: right;
+}
+.historico .titulo{
+	font-size: 20px;
+}
+.tela{
+    margin: 20px 10px;
+    font-size: 40px;
+    text-align: right;
+    border-color: transparent;
+    width: 100%;
+}
+.numeros{
+	width: 245px;
+}
+.numeros>div{
+	text-align: right;
+}
+.btn-1{
+	background: #333333;
+	border-radius: 100%;
+	font-family: arial;
+	color: white;
+	font-size: 14px;
+	padding: 20px;
+	margin: 3px;
+}
+.btn-2{
+	background: #979797;
+	border-radius: 100%;
+	font-family: arial;
+	color: white;
+	font-size: 14px;
+	padding: 20px;
+}
+.btn-0{
+	background:#333333;
+	font-family: arial;
+	color: white;
+	font-size: 14px;
+	padding: 20px 54px;
+	border-radius: 20px;
+}
+.btn-3{
+	background: #D3D3D3;
+	border-radius: 100%;
+	font-family: arial;
+	color: black;
+	font-size: 14px;
+	padding: 18px;
+}
